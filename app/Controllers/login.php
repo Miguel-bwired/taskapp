@@ -24,7 +24,12 @@
 
         if ($auth->login($email, $password))
         {
-            return redirect()->to('/')
+
+            $redirect_url = session('redirect_url') ??  '/';
+
+            unset($_SESSION['redirect_url']);
+
+            return redirect()->to($redirect_url)
                 ->with('info', 'Login successful');
         }else{
             return redirect()->back()

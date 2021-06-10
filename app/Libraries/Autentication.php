@@ -38,7 +38,7 @@ class Autentication
     public function getCurrentUser()
     {
 
-        if ( ! session()->has('user_id'))
+        if ( ! $this->isLoggedIn())
         {
             return null;
         }
@@ -50,4 +50,10 @@ class Autentication
         }
         return $this->user;
     }
+    //---------------------------------------------------------------------
+    public function isLoggedIn()
+    {
+       return session()->has('user_id');
+    }
+
 }
